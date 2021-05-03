@@ -28,5 +28,11 @@ class Districts:
                 self.dataset.data['day_type'].append(0)
 
     def get_districts_class(self):
-        pass
+        for district in self.dataset.get_all_districts():
+            green_days = 0
+            for i in range(len(self.dataset['hospitalized_with_symptoms'])):
+                if self.dataset['denominazione_region'] == district and self.dataset['day_type'][i] == 1:
+                    green_days += 1
+            if green_days <= 340:
+                pass
 

@@ -9,6 +9,7 @@ def main(argv):
     D.filter_districts({'L', 'S'})
 
     print("Question 1:")
+    print(f"hospitalized_with_symptoms: {D.print_details({'hospitalized_with_symptoms'},[statistics.mean,statistics.median])}")
     arr = D.dataset.data['hospitalized_with_symptoms']
     mean = statistics.mean(arr)
     median = statistics.median(arr)
