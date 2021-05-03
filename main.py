@@ -2,35 +2,21 @@ import sys
 import data
 import statistics
 import districts
-import pandas
+
 def main(argv):
     dataset = data.Data(argv[1])
     D = districts.Districts(dataset)
     D.filter_districts({'L', 'S'})
 
     print("Question 1:")
-    print(f"hospitalized_with_symptoms: {D.print_details({'hospitalized_with_symptoms'},[statistics.mean,statistics.median])}")
-    arr = D.dataset.data['hospitalized_with_symptoms']
-    mean = statistics.mean(arr)
-    median = statistics.median(arr)
-    print(f"hospitalized_with_symptoms: {mean}, {median}")
-
-    arr = D.dataset.data['intensive_care']
-    mean = statistics.mean(arr)
-    median = statistics.median(arr)
-    print(f"intensive_care: {mean}, {median}")
-
-    arr = D.dataset.data['total_hospitalized']
-    mean = statistics.mean(arr)
-    median = statistics.median(arr)
-    print(f"total_hospitalized: {mean}, {median}")
-
-    arr = D.dataset.data['home_insulation']
-    mean = statistics.mean(arr)
-    median = statistics.median(arr)
-    print(f"home_insulation: {mean}, {median}\n")
-
-
+    for key in D.dataset.data:
+        if key == 'data' or key == 'region_code' or key == 'denominazione_region' or key == 'new_positives' or key == 'resigned_healed':
+            continue
+        arr = D.dataset.data[key]
+        mean = statistics.mean(arr)
+        median = statistics.median(arr)
+        print(f"{key}: {mean}, {median}")
+    print()
 
     dataset = data.Data(argv[1])
     distinct_districts = dataset.get_all_districts()
