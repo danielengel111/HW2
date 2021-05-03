@@ -19,6 +19,8 @@ class Data:
 
     def set_districts_data(self, districts):
         new_data = {}
+        for key in self.data:
+            new_data[key] = []
         for i in range(0, len(self.data["denominazione_region"])):
             if self.data["denominazione_region"][i] in districts:
                 for key in self.data:

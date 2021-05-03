@@ -7,7 +7,7 @@ class Districts:
         filtered_districts=[]
         for district in districts:
             for letter in letters:
-                if(district[0]==letter):
+                if district[0]==letter:
                     filtered_districts.append(district)
         self.dataset.set_districts_data(filtered_districts)
 
