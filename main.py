@@ -37,18 +37,11 @@ def main(argv):
     print("Question 2:")
     print(f"Number of districts: {len(distinct_districts)}")
 
-    D.determine_day_type()
-    not_green_districts = 0
-    for district in distinct_districts:
-        green_days = 0
-        for i in range(len(dataset.data['hospitalized_with_symptoms'])):
-            if dataset.data['denominazione_region'] == district and dataset.data['day_type'][i] == 1:
-                green_days += 1
-        if green_days <= 340:
-            not_green_districts += 1
+    D = districts.Districts(dataset)
+    dict = D.get_districts_class()
 
-    print(f"Number of not green districts: {not_green_districts}")
-    if not_green_districts > 10:
+    print(f"Number of not green districts: {len(dict['not_green'])}")
+    if len(dict['not_green']) > 10:
         answer = "Yes"
     else:
         answer = "No"
