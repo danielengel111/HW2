@@ -20,13 +20,12 @@ class Districts:
             print("{} ".format((float)(statistic_functions[len(statistic_functions) - 1](feat_list))))
 
     def determine_day_type(self):
-        x= {}
-        for line in self.dataset:
-            if(line["resigned_healed"]-line["new_positives"]>0):
-                x.update({"day_type": 1})
+        self.dataset.data['day_type'] = []
+        for i in range(len(self.dataset.data["resigned_healed"])):
+            if self.dataset.data["resigned_healed"][i] - self.dataset.data["new_positives"][i] > 0:
+                self.dataset.data['day_type'].append(1)
             else:
-                x.update({"day_type":0})
-        self.dataset.data.update(x)
+                self.dataset.data['day_type'].append(0)
 
     def get_districts_class(self):
         pass

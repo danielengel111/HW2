@@ -4,7 +4,6 @@ import statistics
 import districts
 import pandas
 def main(argv):
-    print(argv[1])
     dataset = data.Data(argv[1])
     D = districts.Districts(dataset)
     D.filter_districts({'L', 'S'})
@@ -28,17 +27,32 @@ def main(argv):
     arr = D.dataset.data['home_insulation']
     mean = statistics.mean(arr)
     median = statistics.median(arr)
-    print(f"home_insulation: {mean}, {median}")
+    print(f"home_insulation: {mean}, {median}\n")
 
 
-"""
+
     dataset = data.Data(argv[1])
-    distinct_districts = dataset.Data.get_all_districts()
+    distinct_districts = dataset.get_all_districts()
     print("Question 2:")
     print(f"Number of districts: {len(distinct_districts)}")
-    #print(f"Number of not green districts: {}")
-    #print(f"Will a lockdown be forced on whole of Italy?: {}")
-"""
+
+    D.determine_day_type()
+    not_green_districts = 0
+    for district in distinct_districts:
+        green_days = 0
+        for i in range(len(dataset.data['hospitalized_with_symptoms'])):
+            if dataset.data['denominazione_region'] == district and dataset.data['day_type'][i] == 1:
+                green_days += 1
+        if green_days <= 340:
+            not_green_districts += 1
+
+    print(f"Number of not green districts: {not_green_districts}")
+    if not_green_districts > 10:
+        answer = "Yes"
+    else:
+        answer = "No"
+    print(f"Will a lockdown be forced on whole of Italy?: {answer}")
+
 
 
 
