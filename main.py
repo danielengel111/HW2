@@ -9,14 +9,18 @@ def main(argv):
     D.filter_districts({'L', 'S'})
 
     print("Question 1:")
-    for key in D.dataset.data:
-        if key == 'data' or key == 'region_code' or key == 'denominazione_region' or key == 'new_positives' or key == 'resigned_healed':
-            continue
-        arr = D.dataset.data[key]
-        mean = statistics.mean(arr)
-        median = statistics.median(arr)
-        print(f"{key}: {mean}, {median}")
-    print()
+    #for key in D.dataset.data:
+    #   if key == 'data' or key == 'region_code' or key == 'denominazione_region' or key == 'new_positives' or key == 'resigned_healed':
+    #        continue
+    #    arr = D.dataset.data[key]
+    #    mean = statistics.mean(arr)
+    #    median = statistics.median(arr)
+    #    print(f"{key}: {mean}, {median}")
+    #print()
+    print(D.print_details(["hospitalized_with_symptoms"],[statistics.mean,statistics.median]))
+    print(D.print_details(["intensive_care"], [statistics.mean, statistics.median]))
+    print(D.print_details(["total_hospitalized"], [statistics.mean, statistics.median]))
+    print(D.print_details(["home_insulation"], [statistics.mean, statistics.median]))
 
     dataset = data.Data(argv[1])
     distinct_districts = dataset.get_all_districts()

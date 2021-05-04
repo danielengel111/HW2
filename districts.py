@@ -14,10 +14,10 @@ class Districts:
     def print_details(self, features, statistic_functions):
         for feature in features:
             print("{}: ".format(feature), end="")
-            feat_list = self.dataset[feature]
-            for x in range(len(statistic_functions) - 1):
+            feat_list = self.dataset.data[feature]
+            for x in range(len(statistic_functions)-1):
                 print("{}, ".format(statistic_functions[x](feat_list)), end="")
-            print("{} ".format((float)(statistic_functions[len(statistic_functions) - 1](feat_list))))
+            print("{} ".format((statistic_functions[len(statistic_functions) - 1](feat_list))))
 
     def determine_day_type(self):
         self.dataset.data['day_type'] = []
