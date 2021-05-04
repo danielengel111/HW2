@@ -17,10 +17,9 @@ def main(argv):
     #    median = statistics.median(arr)
     #    print(f"{key}: {mean}, {median}")
     #print()
-    print(D.print_details(["hospitalized_with_symptoms"],[statistics.mean,statistics.median]))
-    print(D.print_details(["intensive_care"], [statistics.mean, statistics.median]))
-    print(D.print_details(["total_hospitalized"], [statistics.mean, statistics.median]))
-    print(D.print_details(["home_insulation"], [statistics.mean, statistics.median]))
+    statistic_methods =[statistics.mean,statistics.median]
+    for key in {"hospitalized_with_symptoms","intensive_care","total_hospitalized","home_insulation"}:
+        D.print_details([key], statistic_methods)
 
     dataset = data.Data(argv[1])
     distinct_districts = dataset.get_all_districts()
