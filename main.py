@@ -6,21 +6,21 @@ import districts
 
 def main(argv):
     dataset = data.Data(argv[1])
-    D = districts.Districts(dataset)
-    D.filter_districts({'L', 'S'})
+    district = districts.Districts(dataset)
+    district.filter_districts({'L', 'S'})
 
     print("Question 1:")
     statistic_methods = [statistics.mean, statistics.median]
     for key in {"hospitalized_with_symptoms", "intensive_care", "total_hospitalized", "home_insulation"}:
-        D.print_details([key], statistic_methods)
+        district.print_details([key], statistic_methods)
 
     dataset = data.Data(argv[1])
     distinct_districts = dataset.get_all_districts()
     print("\nQuestion 2:")
     print(f"Number of districts: {len(distinct_districts)}")
 
-    D = districts.Districts(dataset)
-    dict = D.get_districts_class()
+    district = districts.Districts(dataset)
+    dict = district.get_districts_class()
 
     print(f"Number of not green districts: {len(dict['not_green'])}")
     if len(dict['not_green']) > 10:
