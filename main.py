@@ -11,7 +11,7 @@ def main(argv):
 
     print("Question 1:")
     statistic_methods = [statistics.mean, statistics.median]
-    for key in {"hospitalized_with_symptoms", "intensive_care", "total_hospitalized", "home_insulation"}:
+    for key in ["hospitalized_with_symptoms", "intensive_care", "total_hospitalized", "home_insulation"]:
         district.print_details([key], statistic_methods)
 
     dataset = data.Data(argv[1])
