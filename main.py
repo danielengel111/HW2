@@ -16,7 +16,7 @@ def main(argv):
 
     dataset = data.Data(argv[1])
     distinct_districts = dataset.get_all_districts()
-    print("Question 2:")
+    print("\nQuestion 2:")
     print(f"Number of districts: {len(distinct_districts)}")
 
     D = districts.Districts(dataset)
