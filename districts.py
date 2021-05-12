@@ -3,8 +3,13 @@ class Districts:
         self.dataset = dataset
 
     def filter_districts(self, letters):
-        districts=self.dataset.get_all_districts()
-        filtered_districts=[]
+        """
+
+        :param letters:
+        :return:
+        """
+        districts = self.dataset.get_all_districts()
+        filtered_districts = []
         for district in districts:
             for letter in letters:
                 if district[0] == letter:
@@ -12,14 +17,24 @@ class Districts:
         self.dataset.set_districts_data(filtered_districts)
 
     def print_details(self, features, statistic_functions):
+        """
+
+        :param features:
+        :param statistic_functions:
+        :return:
+        """
         for feature in features:
             print("{}: ".format(feature), end="")
             feat_list = self.dataset.data[feature]
-            for x in range(len(statistic_functions)-1):
+            for x in range(len(statistic_functions) - 1):
                 print("{}, ".format(statistic_functions[x](feat_list)), end="")
             print("{} ".format((statistic_functions[len(statistic_functions) - 1](feat_list))))
 
     def determine_day_type(self):
+        """
+
+        :return:
+        """
         self.dataset.data['day_type'] = []
         for i in range(len(self.dataset.data['denominazione_region'])):
             if self.dataset.data['resigned_healed'][i] - self.dataset.data['new_positives'][i] > 0:
@@ -28,6 +43,10 @@ class Districts:
                 self.dataset.data['day_type'].append(0)
 
     def get_districts_class(self):
+        """
+
+        :return:
+        """
         distinct_districts = self.dataset.get_all_districts()
         self.determine_day_type()
         new_dict = {}
@@ -44,4 +63,3 @@ class Districts:
             else:
                 new_dict['not_green'].append(district)
         return new_dict
-
