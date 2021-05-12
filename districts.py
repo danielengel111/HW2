@@ -1,5 +1,9 @@
 class Districts:
     def __init__(self, dataset):
+        """
+        initialize variables.
+        :param dataset: Data object that contains the data
+        """
         self.dataset = dataset
 
     def filter_districts(self, letters):
@@ -32,8 +36,8 @@ class Districts:
 
     def determine_day_type(self):
         """
-
-        :return:
+        adds a new key:value to the self.dataset.data dictionary,
+        which classifies each day as a "good day" or "not good day".
         """
         self.dataset.data['day_type'] = []
         for i in range(len(self.dataset.data['denominazione_region'])):
@@ -44,8 +48,9 @@ class Districts:
 
     def get_districts_class(self):
         """
-
-        :return:
+        creates a dictionary where one key points to the list of all "green" districts
+        and the second key points to the list of all "not green" districts.
+        :return:the new dictionary.
         """
         distinct_districts = self.dataset.get_all_districts()
         self.determine_day_type()
